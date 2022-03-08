@@ -1,0 +1,15 @@
+{
+  "name": "symon-sez-game",
+  "version": "1.0.0",
+  "description": "A web game based on the classic electronic game from the 1970s",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jerry Lee Melton",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.3"
+  }
+}
