@@ -27,7 +27,7 @@ body {
   display: flex;
   justify-content: center;
 
-  background-color: yellow;
+  background-color: #fefefe;
 
   z-index: -1;
 }
