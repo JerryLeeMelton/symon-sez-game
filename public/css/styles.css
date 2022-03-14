@@ -40,3 +40,7 @@ body {
 .clickable {
   cursor: pointer;
 }
+
+.button-invisible {
+  visibility: hidden;
+}
