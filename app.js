@@ -1,6 +1,7 @@
 const express = require("express");
-const app = express();
 const ejs = require("ejs");
+
+const app = express();
 
 const PORT = process.env.PORT || 3000;
 
@@ -13,4 +14,8 @@ app.get("/", (req, res)=>{
 
 app.listen(PORT, ()=>{
   console.log(`Server started on port ${PORT}`);
+});
+
+app.post("/", (req, res)=>{
+  console.log("Post request received");
 });

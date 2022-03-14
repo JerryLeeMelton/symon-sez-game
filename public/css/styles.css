@@ -42,5 +42,15 @@ body {
 }
 
 .button-invisible {
-  visibility: hidden;
+  /* visibility: hidden; */
+  opacity: 0;
+}
+
+.press-button {
+  visibility: visible;
+
+  -webkit-transition: all 0.1s ease-out;
+  -moz-transition: all 0.1s ease-out;
+  -o-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
 }
