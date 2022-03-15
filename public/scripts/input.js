@@ -100,15 +100,17 @@ gameButtons.on("click", (event)=> {
     }
   }
 
-  $.ajax({
-    type: "POST",
-    url: "/"
-  });
+  // Probably don't need this here??? =========================================
+  // $.ajax({
+  //   type: "POST",
+  //   url: "/"
+  // });
+
 });
 
 startButton.on("click", (event)=> {
   animateButton(event.target.id);
 
   console.log("Start button clicked");
-  startGame();
+  // startGame();
 });
