@@ -31,7 +31,7 @@ function playSequence() {
   // THIS PROMISE CODE IS IMPORTANT
   gamePattern.forEach(function (currentValue, index) {
     promise = promise.then(function () {
-      animateButton(currentValue, "play");
+      animateButton(currentValue + "Button-Lit", "play");
       playSound(currentValue);
       return new Promise(function (resolve) {
         setTimeout(resolve, delayInterval);
@@ -68,20 +68,15 @@ function animateButton(button) {
 
 gameButtons.on("click", (event)=> {
 
-  animateButton(event.target.id);
-  console.log(event.target.id.replace("Button-Lit", ""));
-  playSound(event.target.id.replace("Button-Lit", ""));
-
-
   if (gameRunning && allowButtonClicks && !testing) {
     allowButtonClicks = false;
 
-    animateButton(this.id, "press-button");
+    animateButton(event.target.id);
 
     userPattern.push(this.id);
 
     if (userPattern[userPattern.length - 1] === gamePattern[userPattern.length - 1]) {
-      playSound(this.id);
+      playSound(event.target.id.replace("Button-Lit", ""));
 
       if (userPattern.length === gamePattern.length) {
         nextSequence();
