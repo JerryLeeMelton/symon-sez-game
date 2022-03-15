@@ -42,7 +42,6 @@ body {
 }
 
 .button-invisible {
-  /* visibility: hidden; */
   opacity: 0;
 }
 
@@ -53,4 +52,8 @@ body {
   -moz-transition: all 0.1s ease-out;
   -o-transition: all 0.1s ease-out;
   transition: all 0.1s ease-out;
+}
+
+.start-button-pressed {
+  fill: #590037;
 }

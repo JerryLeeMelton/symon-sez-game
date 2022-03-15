@@ -9,7 +9,7 @@ let delayInterval = 400;
 let testing = true;
 
 let gameButtons = $(".game-button");
-let startButton = $("#StartButtonInner");
+let startButton = $("#StartButtonInner-Lit");
 
 // Functions ==================================================================
 
@@ -47,10 +47,7 @@ function playSound(sound) {
   output.play();
 }
 
-function animateButton(button, animationType) {
-
-  console.log($("#" + button));
-
+function animateButton(button) {
   let buttonToAnimate = $("#" + button);
   let animationDuration = 100;
 
@@ -70,7 +67,7 @@ function animateButton(button, animationType) {
 
 gameButtons.on("click", (event)=> {
 
-  animateButton(event.target.id, "press-button");
+  animateButton(event.target.id);
 
   if (gameRunning && allowButtonClicks && !testing) {
     allowButtonClicks = false;
@@ -110,6 +107,8 @@ gameButtons.on("click", (event)=> {
 });
 
 startButton.on("click", (event)=> {
+  animateButton(event.target.id);
+
   console.log("Start button clicked");
   startGame();
 });
