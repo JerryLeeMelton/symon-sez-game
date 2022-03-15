@@ -1,5 +1,5 @@
 // Variables ==================================================================
-let buttonColors = ["red", "blue", "green", "yellow"];
+let buttonColors = ["green", "magenta", "blue", "yellow"];
 let gamePattern = [];
 let userPattern = [];
 let gameRunning = false;
@@ -43,7 +43,8 @@ function playSequence() {
 }
 
 function playSound(sound) {
-  var output = new Audio("sounds/" + sound + ".mp3");
+  var output = new Audio("/audio/" + sound + ".mp3");
+  output.volume = .1;
   output.play();
 }
 
@@ -68,6 +69,9 @@ function animateButton(button) {
 gameButtons.on("click", (event)=> {
 
   animateButton(event.target.id);
+  console.log(event.target.id.replace("Button-Lit", ""));
+  playSound(event.target.id.replace("Button-Lit", ""));
+
 
   if (gameRunning && allowButtonClicks && !testing) {
     allowButtonClicks = false;
