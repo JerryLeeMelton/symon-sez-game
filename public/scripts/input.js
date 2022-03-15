@@ -27,11 +27,11 @@ function playSequence() {
   var promise = Promise.resolve();
 
   // THIS PROMISE CODE IS IMPORTANT
-  gamePattern.forEach(function (currentValue, index) {
-    promise = promise.then(function () {
+  gamePattern.forEach(function(currentValue, index) {
+    promise = promise.then(function() {
       animateButton(currentValue + "Button-Lit", "play");
       playSound(currentValue);
-      return new Promise(function (resolve) {
+      return new Promise(function(resolve) {
         setTimeout(resolve, delayInterval);
       })
     });
@@ -54,7 +54,7 @@ function animateButton(button) {
     opacity: "1.0"
   }, animationDuration, "swing");
 
-  setTimeout(()=>{
+  setTimeout(() => {
     buttonToAnimate.animate({
       opacity: "0"
     }, animationDuration, "swing")
@@ -64,39 +64,38 @@ function animateButton(button) {
 
 // Game Logic =================================================================
 
-gameButtons.on("click", (event)=> {
-  if (gameRunning && allowButtonClicks) {
-    allowButtonClicks = false;
+gameButtons.on("click", (event) => {
 
-    animateButton(event.target.id);
-    userPattern.push(event.target.id.replace("Button-Lit", ""));
+  if (!gameRunning && !allowButtonClicks) return;
 
-    if (userPattern[userPattern.length - 1] === gamePattern[userPattern.length - 1]) {
-      playSound(event.target.id.replace("Button-Lit", ""));
+  allowButtonClicks = false;
 
-      if (userPattern.length === gamePattern.length) {
-        nextSequence();
-        setTimeout(function() {
-          playSequence();
-        }, delayInterval + delayInterval);
-      } else {
-        allowButtonClicks = true;
-      }
+  animateButton(event.target.id);
+  userPattern.push(event.target.id.replace("Button-Lit", ""));
 
-    } else {
-      playSound("wrong");
-      $("body").toggleClass("game-over", 10);
-      setTimeout(function(){
-        $("body").toggleClass("game-over", 10);
-      }, 200);
-      $("h1").text("Game Over, Press Any Key to Restart");
-      gameRunning = false;
-    }
+  if (userPattern[userPattern.length - 1] !== gamePattern[userPattern.length - 1]) {
+    playSound("wrong");
+
+    gameRunning = false;
+
+    return;
+  }
+
+  playSound(event.target.id.replace("Button-Lit", ""));
+
+  if (userPattern.length === gamePattern.length) {
+    nextSequence();
+    setTimeout(function() {
+      playSequence();
+    }, delayInterval + delayInterval);
+  } else {
+    allowButtonClicks = true;
   }
 });
 
-startButton.on("click", (event)=> {
-  if(!gameRunning){
+
+startButton.on("click", (event) => {
+  if (!gameRunning) {
     animateButton(event.target.id);
     startGame();
   }
