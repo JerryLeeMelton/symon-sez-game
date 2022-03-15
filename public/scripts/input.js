@@ -4,9 +4,7 @@ let gamePattern = [];
 let userPattern = [];
 let gameRunning = false;
 let allowButtonClicks = false;
-let delayInterval = 400;
-
-let testing = true;
+let delayInterval = 500;
 
 let gameButtons = $(".game-button");
 let startButton = $("#StartButtonInner-Lit");
@@ -67,13 +65,11 @@ function animateButton(button) {
 // Game Logic =================================================================
 
 gameButtons.on("click", (event)=> {
-
-  if (gameRunning && allowButtonClicks && !testing) {
+  if (gameRunning && allowButtonClicks) {
     allowButtonClicks = false;
 
     animateButton(event.target.id);
-
-    userPattern.push(this.id);
+    userPattern.push(event.target.id.replace("Button-Lit", ""));
 
     if (userPattern[userPattern.length - 1] === gamePattern[userPattern.length - 1]) {
       playSound(event.target.id.replace("Button-Lit", ""));
@@ -95,21 +91,13 @@ gameButtons.on("click", (event)=> {
       }, 200);
       $("h1").text("Game Over, Press Any Key to Restart");
       gameRunning = false;
-
     }
   }
-
-  // Probably don't need this here??? =========================================
-  // $.ajax({
-  //   type: "POST",
-  //   url: "/"
-  // });
-
 });
 
 startButton.on("click", (event)=> {
-  animateButton(event.target.id);
-
-  console.log("Start button clicked");
-  // startGame();
+  if(!gameRunning){
+    animateButton(event.target.id);
+    startGame();
+  }
 });
