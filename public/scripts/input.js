@@ -69,28 +69,26 @@ gameButtons.on("click", (event) => {
   if (!gameRunning && !allowButtonClicks) return;
 
   allowButtonClicks = false;
-
   animateButton(event.target.id);
   userPattern.push(event.target.id.replace("Button-Lit", ""));
 
   if (userPattern[userPattern.length - 1] !== gamePattern[userPattern.length - 1]) {
     playSound("wrong");
-
     gameRunning = false;
-
     return;
   }
 
   playSound(event.target.id.replace("Button-Lit", ""));
 
-  if (userPattern.length === gamePattern.length) {
-    nextSequence();
-    setTimeout(function() {
-      playSequence();
-    }, delayInterval + delayInterval);
-  } else {
+  if (userPattern.length !== gamePattern.length) {
     allowButtonClicks = true;
+    return;
   }
+
+  nextSequence();
+  setTimeout(function() {
+    playSequence();
+  }, delayInterval + delayInterval);
 });
 
 
