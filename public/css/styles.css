@@ -57,3 +57,16 @@ body {
 .start-button-pressed {
   fill: #590037;
 }
+
+.score-counter-wrapper {
+  font-family: "Lato-Black", sans-serif;
+  position: fixed;
+  top: 0.5rem;
+  right: 2rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  line-height: 0.5;
+
+}

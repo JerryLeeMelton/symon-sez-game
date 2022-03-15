@@ -9,6 +9,7 @@ let score = 0;
 
 let gameButtons = $(".game-button");
 let startButton = $("#StartButtonInner-Lit");
+let scoreDisplay = $("#score-display");
 
 // Functions ==================================================================
 
@@ -98,12 +99,12 @@ gameButtons.on("click", (event) => {
   animateButton(event.target.id);
   playSound(event.target.id.replace("Button-Lit", ""));
 
-  if (userPattern.length !<= gamePattern.length) {
+  if (userPattern.length !== gamePattern.length) {
     allowButtonClicks = true;
     return;
   }
 
-  score++;
+  scoreDisplay.text(++score);
   nextSequence();
   setTimeout(function() {
     playSequence().then(toggleButtonClicksAllowed());
